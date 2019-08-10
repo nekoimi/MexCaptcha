@@ -122,10 +122,11 @@ class CaptchaController extends Controller {
      */
     public function getCaptchaInfo (Request $request) {
         // ......
+        $server_url = $request->getSchemeAndHttpHost();
         $captcha_id = Str::generate_uuid();
         return [
-            'captcha_url' => "http://192.168.0.100:8000/captcha/{$captcha_id}",
-            'captcha_id'        => $captcha_id
+            'captcha_url' => $server_url . "/captcha/{$captcha_id}",
+            'captcha_id'  => $captcha_id
         ];
     }
 
