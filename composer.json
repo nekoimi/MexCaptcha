@@ -1,0 +1,35 @@
+{
+    "name": "yprisoner/mexcaptcha",
+    "description": "captche package for lumen.",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0",
+        "ext-gd": "*",
+        "illuminate/config": "~5.5",
+        "illuminate/filesystem": "~5.5",
+        "illuminate/support": "~5.5",
+        "illuminate/hashing": "~5.5",
+        "intervention/image": "~2.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.3@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "MexCaptcha\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MexCaptcha\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "yprisoner",
+            "email": "yyprisoner@gmail.com"
+        }
+    ]
+}
