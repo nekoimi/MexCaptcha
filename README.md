@@ -123,7 +123,7 @@ class CaptchaController extends Controller {
     public function getCaptchaInfo (Request $request) {
         // ......
         $server_url = $request->getSchemeAndHttpHost();
-        $captcha_id = Str::generate_uuid();
+        $captcha_id = mexcaptcha_uuid();
         return [
             'captcha_url' => $server_url . "/captcha/{$captcha_id}",
             'captcha_id'  => $captcha_id
@@ -139,9 +139,7 @@ class CaptchaController extends Controller {
      * @return mixed
      */
     public function showCaptchaImage (Request $request, string $captcha_id) {
-        /**@var CaptchaInterface $mexcaptcha */
-        $mexcaptcha = app('mexcaptcha');
-        return $mexcaptcha->create($captcha_id);
+        return mexcaptcha()->create($captcha_id);
     }
 
 
