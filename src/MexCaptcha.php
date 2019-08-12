@@ -86,12 +86,12 @@ class MexCaptcha implements CaptchaInterface {
     /**
      * @var int
      */
-    protected $width = 120;
+    protected $width = 180;
 
     /**
      * @var int
      */
-    protected $height = 36;
+    protected $height = 50;
 
     /**
      * @var int
@@ -196,12 +196,11 @@ class MexCaptcha implements CaptchaInterface {
     }
 
     /**
-     * @param string $config
      * @return void
      */
-    protected function configure ($config) {
-        if (!empty($this->captchaConf) && isset($this->captchaConf[$config])) {
-            foreach ($this->captchaConf[$config] as $key => $val) {
+    protected function configure () {
+        if (!empty($this->captchaConf) && isset($this->captchaConf['options'])) {
+            foreach ($this->captchaConf['options'] as $key => $val) {
                 $this->{$key} = $val;
             }
         }
@@ -237,10 +236,11 @@ class MexCaptcha implements CaptchaInterface {
 
     /**
      * @param string $captcha_id
-     * @param string $config
+     * @param int $width
+     * @param int $height
      * @return mixed
      */
-    public function create (string $captcha_id, string $config = 'default') {
+    public function create (string $captcha_id, int $width = 0, int $height = 0) {
         $this->backgrounds = $this->files->files(__DIR__ . '/../assets/backgrounds');
         $this->fonts = $this->files->files(__DIR__ . '/../assets/fonts');
         $this->fonts = array_values($this->fonts); //reset fonts array index
@@ -248,7 +248,15 @@ class MexCaptcha implements CaptchaInterface {
             return $file->getPathname();
         }, $this->fonts);
 
-        $this->configure($config);
+        if (0 !== (int)$width) {
+            $this->width = $width;
+        }
+
+        if (0 !== (int)$height) {
+            $this->height = $height;
+        }
+
+        $this->configure();
         $this->text = $this->generate($captcha_id);
         $this->canvas = $this->imageManager->canvas(
             $this->width,

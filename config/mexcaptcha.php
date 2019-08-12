@@ -10,7 +10,7 @@ return [
     'expired_at'         => 10 * 60,     //验证码有效时间，单位（秒钟）
     'captcha_characters' => '2346789abcdefghjmnpqrtuxyzABCDEFGHJMNPQRTUXYZ',
     'sensitive'          => false,//验证码大小写是否敏感
-    'default'              => [//登陆验证码样式
+    'options'              => [//登陆验证码样式
         'length'     => 4,//验证码字数
         'width'      => 180,//图片宽度
         'height'     => 50,//字体大小和图片高度

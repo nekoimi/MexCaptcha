@@ -18,10 +18,11 @@ interface CaptchaInterface {
     /**
      * Create captcha image
      * @param string $captcha_id
-     * @param string $config
+     * @param int $width
+     * @param int $height
      * @return mixed
      */
-    public function create(string $captcha_id, string $config = 'default');
+    public function create(string $captcha_id, int $width = 0, int $height = 0);
 
 
     /**
