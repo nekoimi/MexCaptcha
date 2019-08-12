@@ -30,8 +30,7 @@ interface CacheHandlerInterface {
      *
      * @param string $key
      * @param string $value
-     * @param int $expired_at
-     * @return mixed
+     * @param int $expired_at 过期时间（秒钟）
      */
     public function set(string $key, string $value, int $expired_at);
 
@@ -49,7 +48,6 @@ interface CacheHandlerInterface {
      * Remove s cache by Key.
      *
      * @param string $key
-     * @return mixed
      */
     public function del(string $key);
 

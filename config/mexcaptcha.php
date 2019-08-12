@@ -22,7 +22,49 @@ return [
         'blur'       => 0,//模糊度
         'sharpen'    => 0,//锐化
         'contrast'   => 0,//反差
-        'fontColors' => ['#f45a8d', '#ff3300', '#9966ff', '#3333ff'],//字体颜色
+        'fontColors' => ['#f45a8d', '#5a8df4', '#5af4c1', '#c15af4'],//字体颜色
     ],
-    'cache_handler' =>  null // implements MexCaptcha\Contracts\CacheHandlerInterface
+    // 需要实现自定义的缓存
+    'cache_handler' =>  new class implements \MexCaptcha\Contracts\CacheHandlerInterface {
+
+        /**
+         * Get cache value by cache Key.
+         *
+         * @param string $key
+         * @return string
+         */
+        public function get(string $key): string {
+            // TODO: Implement get() method.
+        }
+
+        /**
+         * Set a cache.
+         *
+         * @param string $key
+         * @param string $value
+         * @param int $expired_at 过期时间（秒钟）
+         */
+        public function set(string $key, string $value, int $expired_at) {
+            // TODO: Implement set() method.
+        }
+
+        /**
+         * Determine if the cache exists.
+         *
+         * @param string $key
+         * @return bool
+         */
+        public function has(string $key): bool {
+            // TODO: Implement has() method.
+        }
+
+        /**
+         * Remove s cache by Key.
+         *
+         * @param string $key
+         */
+        public function del(string $key) {
+            // TODO: Implement del() method.
+        }
+    },// implements MexCaptcha\Contracts\CacheHandlerInterface
 ];
