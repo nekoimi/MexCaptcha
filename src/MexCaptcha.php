@@ -247,16 +247,14 @@ class MexCaptcha implements CaptchaInterface {
         $this->fonts = array_map(function($file) {
             return $file->getPathname();
         }, $this->fonts);
-
-        if (0 !== (int)$width) {
-            $this->width = $width;
-        }
-
-        if (0 !== (int)$height) {
-            $this->height = $height;
-        }
-
         $this->configure();
+        foreach (array_merge(
+            compact('width'),
+            compact('height')) as $k => $v) {
+            if ($v > 0) {
+                $this->{$k} = $v;
+            }
+        }
         $this->text = $this->generate($captcha_id);
         $this->canvas = $this->imageManager->canvas(
             $this->width,
