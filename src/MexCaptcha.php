@@ -25,6 +25,8 @@ use MexCaptcha\Exceptions\CaptchaException;
  */
 class MexCaptcha implements CaptchaInterface {
 
+    const VERSION = '1.2.2';
+
     const CACHE_PREFIX = 'mex_captcha:';
 
     /**
@@ -185,10 +187,14 @@ class MexCaptcha implements CaptchaInterface {
             '2346789abcdefghjmnpqrtuxyzABCDEFGHJMNPQRTUXYZ';
 
         $cache_handler_class = $this->captchaConf['cache_handler'];
-        if (null === $cache_handler_class || !class_exists($cache_handler_class)) {
-            throw new CaptchaException('CacheHandler not exists!');
+        if (is_object($cache_handler_class)) {
+            $cache_handler = $cache_handler_class;
+        } else {
+            if (null === $cache_handler_class || !class_exists($cache_handler_class)) {
+                throw new CaptchaException('CacheHandler not exists!');
+            }
+            $cache_handler = new $cache_handler_class;
         }
-        $cache_handler = app($cache_handler_class);
         if (! $cache_handler instanceof CacheHandlerInterface) {
             throw new CaptchaException('CacheHandler not valid `CacheHandlerInterface`!');
         }

@@ -3,7 +3,6 @@
     "description": "captche package for lumen.",
     "type": "library",
     "license": "MIT",
-    "minimum-stability": "dev",
     "require": {
         "php": ">=7.0",
         "ext-gd": "*",
